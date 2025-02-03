@@ -1,0 +1,2 @@
+False, python does let you use == for Nan values, instead
+we can use math.isnan( value )

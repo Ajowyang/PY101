@@ -1,0 +1,3 @@
+0.9
+
+False (precision with floats will make it False even though expected to be True)
