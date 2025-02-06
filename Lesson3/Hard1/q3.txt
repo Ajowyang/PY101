@@ -1,0 +1,17 @@
+A)doesn't mutate the original lists because function creates
+variables that only exist locally within the function, not 
+mutating the ones outside
+one is ["one"]
+two is ["two"]
+three is ["three"]
+
+B)same as A, the assignments make local variables point to something
+but dont change what the outside variables point to
+one is ["one"]
+two is ["two"]
+three is ["three"]
+
+C)the one changes the original values
+one is ["two"]
+two is ["three"]
+three is ["one"]

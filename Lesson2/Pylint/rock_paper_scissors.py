@@ -1,14 +1,5 @@
 import random
 
-VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
-VALID_SHORTENED_INPUTS = ['r', 'p', 'sc', 'l', 'sp']
-SHORTENED_INPUT_CHOICES = {
-    'r': 'rock',
-    'p': 'paper',
-    'sc': 'scissors',
-    'l': 'lizard',
-    'sp': 'spock'
-}
 WINNING_COMBOS = {
     'rock': ['scissors', 'lizard'],
     'paper': ['rock', 'spock'],
@@ -16,10 +7,27 @@ WINNING_COMBOS = {
     'lizard': ['paper', 'spock'],
     'spock': ['rock', 'scissors'],
 }
+
+SHORTENED_INPUT_CHOICES = {
+    key[0] if key[0] != 's' else key[0:2]: key for key in WINNING_COMBOS
+}
+# SHORTENED_INPUT_CHOICES = {
+#     'r': 'rock',
+#     'p': 'paper',
+#     'sc': 'scissors',
+#     'l': 'lizard',
+#     'sp': 'spock'
+# }
+
 WINS = {
     'player': 0,
     'computer': 0
 }
+
+VALID_CHOICES = tuple(WINNING_COMBOS.keys())
+# VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
+VALID_SHORTENED_INPUTS = tuple(SHORTENED_INPUT_CHOICES.keys())
+# VALID_SHORTENED_INPUTS = ['r', 'p', 'sc', 'l', 'sp']
 
 def prompt(message):
     print(f"==> {message}")
@@ -41,12 +49,12 @@ def display_winner(player_choice, comp_choice):
 
 def prompt_and_validate_input():
     prompt(f'Choose one: {", ".join(VALID_CHOICES)}')
-    player_choice = input()
+    player_choice = input().lower()
     if player_choice in VALID_SHORTENED_INPUTS:
         player_choice = SHORTENED_INPUT_CHOICES[player_choice]
     while player_choice not in VALID_CHOICES:
         prompt("That's not a valid choice")
-        player_choice = input()
+        player_choice = input().lower()
         if player_choice in VALID_SHORTENED_INPUTS:
             player_choice = SHORTENED_INPUT_CHOICES[player_choice]
     return player_choice
